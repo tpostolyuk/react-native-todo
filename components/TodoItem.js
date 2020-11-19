@@ -24,8 +24,8 @@ export const TodoItem = ({ id, title, isChecked, handleToggleTask }) => {
   return (
     <Swipeable
       renderLeftActions={renderLeftActions}
-      friction={3}
-      leftThreshold={10}
+      friction={4}
+      leftThreshold={20}
     >
       <CheckBox
         checked={isChecked}
