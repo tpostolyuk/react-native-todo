@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Alert, FlatList } from 'react-native'
+import { View, StyleSheet, Alert, FlatList, ScrollView } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -35,7 +35,7 @@ export const TodoList = () => {
       <View style={styles.board}>
         <View style={{ flexDirection: 'row', }}>
           <View style={styles.inputContainer}>
-            <Input value={title} onChangeText={setTitle} placeholder='Enter task' />
+            <Input onSubmitEditing={handleAddTask} value={title} onChangeText={setTitle} placeholder='Enter task' />
           </View>
           <View style={styles.btnContainer}>
             <Button disabled={!title} onPress={handleAddTask} title="Add" type="outline" />
@@ -45,8 +45,11 @@ export const TodoList = () => {
           <Button onPress={handleClearTask} title="Clear All Task" />
         </View>
       </View>
-      <FlatList data={tasks} keyExtractor={item => item.id} renderItem={({ item }) => <TodoItem handleToggleTask={handleToggleTask} {...item} />}>
-      </FlatList>
+        <FlatList 
+          data={tasks}
+          keyExtractor={({ id }) => id}
+          renderItem={({ item }) => <TodoItem handleToggleTask={handleToggleTask} {...item} />}>
+        </FlatList>
     </View>
   )
 }
@@ -54,13 +57,12 @@ export const TodoList = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    minHeight: 500,
   },
   board: {
     justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
-    height: 150,
+    height: '20%',
   },
   inputContainer: {
     marginTop: 10,
