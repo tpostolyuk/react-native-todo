@@ -26,7 +26,6 @@ export const TodoItem = ({ id, title, isChecked, handleToggleTask }) => {
       renderLeftActions={renderLeftActions}
       friction={3}
       leftThreshold={10}
-
     >
       <CheckBox
         checked={isChecked}
